@@ -320,11 +320,11 @@ class PPOAgent:
                 }, f'checkpoints/{self.variant_tag}_{self.env_name}_episode_{i_episode}.pth')
                 
                 # Evaluate policy and log video
-                avg_eval_reward = utils.evaluate_policy(self.actor, self.env.observation_space, self.env_name, episodes=3, return_frames=False)
+                avg_eval_reward = utils.evaluate_policy(self.actor, self.env.action_space, self.env_name, episodes=3, return_frames=False)
                 self.logger.add_value('train/eval_mean_reward', avg_eval_reward, i_episode)
                 
                 # Log evaluation video
-                _, frames = utils.evaluate_policy(self.actor, self.env.observation_space, self.env_name, episodes=1, return_frames=True, max_length=1000)
+                _, frames = utils.evaluate_policy(self.actor, self.env.action_space, self.env_name, episodes=1, return_frames=True, max_length=1000)
                 self.logger.add_frames('train/eval_video', frames, i_episode)
             
             print(f"Episode {i_episode}/{self.num_episodes} - Total Reward: {total_reward:.2f} - Actor Loss: {actor_loss:.4f} - Critic Loss: {value_loss:.4f}")
