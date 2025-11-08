@@ -97,7 +97,7 @@ class PPOAgent:
         self.env_tag = env_name.lower().replace('-', '_').split('/')[-1]
         self.num_params = sum(p.numel() for p in self.actor.parameters()) + sum(p.numel() for p in self.critic.parameters())
         self.variant_tag = "ppo"
-        self.logger = Logger(self.env_tag, self.env_name, self.variant_tag, self.num_params)
+        self.logger = Logger(self.env_tag, self.env_name, self.variant_tag, self.num_params, self.lr, self.entropy_coef, self.gae_lambda)
 
 
 

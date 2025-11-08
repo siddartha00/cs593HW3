@@ -12,10 +12,10 @@ from torch.utils.tensorboard import SummaryWriter
 
 
 class Logger:
-    def __init__(self, env_tag, env_name, source_tag, num_params):
+    def __init__(self, env_tag, env_name, source_tag, num_params, lr, entropy_coef, gae_lambda):
         """Configure TensorBoard logging."""
 
-        log_dir = os.path.join('runs', env_tag, f"{source_tag}_{int(time.time())}")
+        log_dir = os.path.join('runs', env_tag, f"{source_tag}_lr_{lr}_entropy_{entropy_coef}_gae_{gae_lambda}")
         os.makedirs(log_dir, exist_ok=True)
         self.writer = SummaryWriter(log_dir=log_dir)
         
